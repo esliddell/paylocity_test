@@ -1,7 +1,6 @@
 import React from 'react';
-import { useImperativeHandle } from 'react';
-import { Row, Col, InputGroup, FormControl, Button, Form, ButtonGroup, ToggleButton, ToggleButtonGroup, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-import ReactDOM from 'react-dom';
+import { Row, Col, Button, Form, Card,  } from 'react-bootstrap';
+
  
 class BenefitsDeductionCalculator extends React.Component {
   
@@ -107,37 +106,61 @@ class BenefitsDeductionCalculator extends React.Component {
         </Col>
         <Col xs={6}>
         <Row className="justify-content-xs-right">
-            <Form id="benefitsType" >
-                <Form.Group className="mb-3">
-                    <Form.Label className="mb-3 col-xs-6">Employee Name</Form.Label>
-                    <Col xs={6} className="">
-                        <Form.Control type="text" placeholder="Name" className="mb-3 col-xs-6" onChange={this.setEmployeeName}/>
-                    </Col>
-                    <Button variant="secondary" type="button" onClick={this.addDependent} className="mb-3">Add Dependent</Button>
-                    {this.state.dependents.map((dependent, index) => (
-                        <Col xs={12} className="">
-                            <Row>
-                                <Col xs={6}>
-                                    <Form.Control type="text" placeholder={`Dependent ${index + 1}`} key={index} name="dependent" id={`dependent_${index}`} value={dependent.name} onChange={this.setDependentName} className="mb-3"/>
-                                </Col>
-                                <Col xs={6}>
-                                    <Button key={index} name="dependent" id={`dependent_${index}`} className="mb-3" onClick={() => this.removeDependent(index)}>Remove</Button>
-                                </Col>
+            <Col xs={12}>
+                <Form id="benefitsType" >
+                    <Form.Group className="mb-3">
+                        <Row  id="employee-container">
                             
-                            </Row>
-                        </Col>
-                    ))} 
-                </Form.Group>
-            </Form>
+                            <Col className="mb-3">
+                                <Form.Label className="col-xs-6">Employee Name</Form.Label>
+                            </Col>
+                            <Col xs={6}>
+                                <Form.Control type="text" placeholder="Name" className="mb-3" onChange={this.setEmployeeName}/>
+                            </Col>
+                            
+                            <Col xs={12} className="mb-3" id="add-button-container">
+                                <Button variant="secondary" type="button" id="addButton" onClick={this.addDependent}>Add Dependent</Button>
+                            </Col>
+                            {this.state.dependents.map((dependent, index) => (
+                            <Col xs={12} className="mb-3">
+                                <Row>
+                                    <Col>
+                                        <Form.Control type="text" placeholder={`Dependent ${index + 1}`} key={index} name="dependent" id={`dependent_${index}`} value={dependent.name} onChange={this.setDependentName} className="mb-3"/>
+                                    </Col>
+                                    <Col>
+                                        <Button key={index} name="dependent" id={`dependent_${index}`} className="mb-3" onClick={() => this.removeDependent(index)}>Remove</Button>
+                                    </Col>
+                                
+                                </Row>
+                            </Col>
+                            ))}
+                        </Row> 
+                    </Form.Group>
+                </Form>
+            </Col>
         </Row>
         </Col>
         <Col xs={6}>
             <Row>
-                <h1>Benefits Cost</h1>
-                <label>Net paycheck amount</label><span className="mb-3">${this.state.netPaycheck}</span>
-                <label>Paychecks per year</label><span className="mb-3">{this.state.paychecksPeyYear}</span>
-                <label>Amount per paycheck*</label><span className="mb-3">{this.state.amountPerPaycheck}</span>
-                <label>Yearly cost</label><span className="mb-3">{this.state.yearlyCost}</span>
+                <Card bg='dark' border='light'>
+                    
+                    <Card.Body>
+                        <Card.Title>Benefits Cost</Card.Title>
+                        <Card.Text>Net paycheck amount</Card.Text>
+                        <Card.Text>${this.state.netPaycheck}</Card.Text>
+                        <Card.Text>Paychecks per year</Card.Text>
+                        <Card.Text>{this.state.paychecksPeyYear}</Card.Text>
+                        <Card.Text>Amount per paycheck*</Card.Text>
+                        <Card.Text>${this.state.amountPerPaycheck}</Card.Text>
+                        
+                        <Card.Text>Yearly cost</Card.Text>
+                        <Card.Text>${this.state.yearlyCost}</Card.Text>
+                        <Card.Subtitle>*Amount reflected will be taken from paychecks bi-monthly, on the months where there are three paychecks, this amount will not be removed.Go</Card.Subtitle>
+
+                    </Card.Body>
+                </Card>
+                <h1></h1>
+                
             </Row>    
         </Col>
 
