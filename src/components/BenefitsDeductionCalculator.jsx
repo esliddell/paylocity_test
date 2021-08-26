@@ -155,7 +155,7 @@ class BenefitsDeductionCalculator extends React.Component {
                         
                         <Card.Text>Yearly cost</Card.Text>
                         <Card.Text>${this.state.yearlyCost}</Card.Text>
-                        <Card.Subtitle>*Amount reflected will be taken from paychecks bi-monthly, on the months where there are three paychecks, this amount will not be removed.Go</Card.Subtitle>
+                        <Card.Subtitle>*Amount reflected will be taken from paychecks bi-monthly, on the months where there are three paychecks, this amount will not be removed.</Card.Subtitle>
 
                     </Card.Body>
                 </Card>
